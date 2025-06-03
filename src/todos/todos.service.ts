@@ -6,6 +6,7 @@ export class TodosService {
     { id: 1, title: 'Todo 1' },
     { id: 2, title: 'Todo 2' },
   ]
+
   findAll() {
     return this.todos
   }
@@ -25,14 +26,12 @@ export class TodosService {
     }
 
     this.todos.push(newTodo)
-
-    return this.todos[-1]
+    return this.todos[this.todos.length - 1]
   }
 
   delete(id: number) {
     const index = id
     this.todos.splice(index, 1)
-
     return this.todos
   }
 }
