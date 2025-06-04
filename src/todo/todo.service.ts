@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class TodosService {
+export class TodoService {
   private todos = [
     { id: 1, title: 'Todo 1' },
     { id: 2, title: 'Todo 2' },

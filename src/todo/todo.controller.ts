@@ -1,31 +1,31 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
-import { TodosService } from './todos.service'
-import { Todo } from 'src/types/todos'
+import { TodoService } from './todo.service'
+import { Todo } from 'src/types/todo'
 
-@Controller('todos')
-export class TodosController {
-  constructor(private readonly todosService: TodosService) {}
+@Controller('todo')
+export class TodoController {
+  constructor(private readonly todoService: TodoService) {}
 
   @Get()
   findAll(): Todo[] {
-    return this.todosService.findAll()
+    return this.todoService.findAll()
   }
 
   @Get(':id')
   findOne(@Param() params: Record<string, any>): Todo {
     const id = parseInt(params.id as string)
-    return this.todosService.findOne(id)
+    return this.todoService.findOne(id)
   }
 
   @Post()
   create(@Body() body: Record<string, any>): Todo {
     const newTodoTitle = body.title as string
-    return this.todosService.create(newTodoTitle)
+    return this.todoService.create(newTodoTitle)
   }
 
   @Delete(':id')
   delete(@Param() params: Record<string, any>) {
     const id = parseInt(params.id as string)
-    return this.todosService.delete(id)
+    return this.todoService.delete(id)
   }
 }
