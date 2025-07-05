@@ -11,7 +11,7 @@ export class AuthService {
 
   async register(inputForm: Record<string, string>) {
     const { username, email, password } = inputForm
-    const isDuplicatedUser = this.userService.findOne(email)
+    const isDuplicatedUser = this.userService.getUserByEmail(email)
     if (isDuplicatedUser) {
       const errors = { email: 'This email already in use' }
       throw new HttpException(
@@ -23,6 +23,7 @@ export class AuthService {
     const hashedPassword = await this.hashService.hash(password)
 
     const newUser = {
+      id: this.userService.getRunningUserId(),
       username,
       email,
       password: hashedPassword,
